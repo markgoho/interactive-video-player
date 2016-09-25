@@ -1,3 +1,45 @@
+html {
+  box-sizing: border-box; }
 
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', arial, sans-serif;
+  background: #302929; }
+
+video {
+  margin: 0 auto;
+  display: block; }
+
+div {
+  border: 1px solid red; }
+
+.wrapper {
+  margin: 15px auto;
+  max-width: 900px;
+  background: #504848;
+  padding: 15px 0;
+  border-radius: 15px; }
+
+.media-player-controls {
+  width: 90%;
+  margin: 0 auto; }
+
+button {
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px 5px;
+  cursor: pointer; }
+
+.play {
+  padding: 13px 11px;
+  background: url(../icons/play-icon.png) no-repeat; }
 
 /*# sourceMappingURL=style.css.map */

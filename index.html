@@ -11,21 +11,27 @@
 		</head>
 
   	<body>
-  		<div class="media-player">
-  				<video autoplay>
-  					<source src="video/video.mp4" type="video/mp4">
-  					<source src="video/video.ogg" type="vido/ogg">
-  					<track kind="subtitles" src="captions.vtt">
-  				</video>
+      <div class="wrapper">
+    		<div class="media-player">
+    				<video id="video-player" width="90%">
+    					<source src="video/video.mp4" type="video/mp4">
+    					<source src="video/video.ogg" type="vido/ogg">
+    					<track kind="subtitles" src="captions.vtt">
+    				</video>
 
-  				<div class="media-player-controls">
-  				</div>
-  		</div>
+    				<div class="media-player-controls">
+              <button id="play-pause-button" type="button" class="play" title="play">
+              <!-- <progress value="0" max="100"></progress> -->
+              <!-- <button id="mute"> -->
 
-  		<div class="transcript">
+    				</div>
+    		</div>
+
+    		<div class="transcript">
 
 
-  		</div>
+    		</div>
+      </div>
   	<script
 		  src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
 		  integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="

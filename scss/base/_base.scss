@@ -1,0 +1,22 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Open Sans', arial, sans-serif;
+	background: #302929;
+}
+
+video {
+	margin: 0 auto;
+	display: block;
+}
+
+div {
+	border: 1px solid red;
+}
