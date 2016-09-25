@@ -1,15 +1,6 @@
-var video = document.getElementById('#video-player');
+var video = document.getElementById('video-player');
 
 $playPauseButton = $('#play-pause-button');
-
-// $playPauseButton.click(function () {
-// 	if (video.paused) {
-// 		video.play();
-// 	} else {
-// 		video.pause();
-// 	}
-	
-// });
 
 $playPauseButton.click(function () {
   if (video.paused) {
@@ -20,4 +11,3 @@ $playPauseButton.click(function () {
     $playPauseButton.css('background', 'url(icons/play-icon.png) center center no-repeat');
   }
 });
-
