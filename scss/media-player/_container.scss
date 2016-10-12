@@ -5,9 +5,10 @@
 .media-player-controls {
 	width: 100%;
 	position: absolute;
-	left: 5px;
+	left: 0;
 	bottom: 10px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	z-index: 2147483647;
 }

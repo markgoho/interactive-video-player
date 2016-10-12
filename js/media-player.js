@@ -2,6 +2,7 @@ var video = document.getElementById('video-player');
 
 $playPauseButton = $('#play-pause-button');
 $muteButton = $('#mute-button');
+$fullscreenButton = $('#fullscreen-button');
 
 $playPauseButton.click(function () {
 	if (video.paused) {
@@ -23,3 +24,20 @@ $muteButton.click(function () {
 	}
 
 });
+
+$fullscreenButton.click(function() {
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+  } else if (video.webkitRequestFullscreen) {
+    video.webkitRequestFullscreen();
+  } else if (video.mozRequestFullScreen) {
+    video.mozRequestFullScreen();
+  }
+});
+
+//  display video duration when available
+video.addEventListener("loadedmetadata", function () {
+  vLength = video.duration.toFixed(1);
+  console.log(vLength);
+  document.getElementById('vLen').innerHTML = vLength; // global variable
+}, false);

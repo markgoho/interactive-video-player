@@ -28,11 +28,12 @@ video {
 .media-player-controls {
   width: 100%;
   position: absolute;
-  left: 5px;
+  left: 0;
   bottom: 10px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; }
+  justify-content: space-between;
+  z-index: 2147483647; }
 
 button {
   border: none;
@@ -44,6 +45,9 @@ button {
   margin: 5px 5px;
   cursor: pointer; }
 
+video::-webkit-media-controls-enclosure {
+  display: none !important; }
+
 #play-pause-button {
   padding: 13px 11px;
   background: url(../icons/play-icon.png) center center no-repeat; }
@@ -51,5 +55,9 @@ button {
 #mute-button {
   padding: 13px 11px;
   background: url(../icons/volume-on-icon.png) center center no-repeat; }
+
+#fullscreen-button {
+  padding: 13px 11px;
+  background: url(../icons/fullscreen-icon.png) center center no-repeat; }
 
 /*# sourceMappingURL=style.css.map */

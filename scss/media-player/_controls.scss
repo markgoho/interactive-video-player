@@ -9,6 +9,11 @@ button {
     cursor: pointer;
 }
 
+video::-webkit-media-controls-enclosure {
+  display:none !important;
+}
+
+
 #play-pause-button {
 	padding: 13px 11px;
 	background: url(../icons/play-icon.png) center center no-repeat;
@@ -17,4 +22,9 @@ button {
 #mute-button {
     padding: 13px 11px;
     background: url(../icons/volume-on-icon.png) center center no-repeat;
+}
+
+#fullscreen-button {
+    padding: 13px 11px;
+    background: url(../icons/fullscreen-icon.png) center center no-repeat;
 }
