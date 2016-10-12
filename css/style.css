@@ -44,8 +44,12 @@ button {
   margin: 5px 5px;
   cursor: pointer; }
 
-.play {
+#play-pause-button {
   padding: 13px 11px;
-  background: url(../icons/play-icon.png) no-repeat; }
+  background: url(../icons/play-icon.png) center center no-repeat; }
+
+#mute-button {
+  padding: 13px 11px;
+  background: url(../icons/volume-on-icon.png) center center no-repeat; }
 
 /*# sourceMappingURL=style.css.map */
