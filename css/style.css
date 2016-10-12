@@ -18,9 +18,7 @@ video {
 .wrapper {
   margin: 15px auto;
   max-width: 900px;
-  background: #504848;
-  padding: 15px 0;
-  border-radius: 15px; }
+  padding: 15px 0; }
 
 .media-player {
   position: relative; }
@@ -47,6 +45,25 @@ button {
 
 video::-webkit-media-controls-enclosure {
   display: none !important; }
+
+input[type='range'] {
+  -webkit-appearance: none !important;
+  background: #000;
+  border: #666 1px solid;
+  height: 4px; }
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #e6e6e6;
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  cursor: pointer; }
+
+#progress-bar {
+  opacity: .8;
+  margin: 10px auto;
+  width: 100%; }
 
 #play-pause-button {
   padding: 13px 11px;

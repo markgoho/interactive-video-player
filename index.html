@@ -20,9 +20,10 @@
     				</video>
 
     				<div class="media-player-controls">
+              <input id="progress-bar" type="range" min="0" max="100" value="0" title="Progress Bar">
               <button id="play-pause-button"></button>
               <div id="play-time">
-                <span id="vLen"></span>
+                <span id="current-position"></span> / <span id="total-length"></span>
               </div>
               <button id="mute-button"></button>
               <button id="fullscreen-button"></button>

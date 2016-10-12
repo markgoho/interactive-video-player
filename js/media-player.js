@@ -1,8 +1,11 @@
 var video = document.getElementById('video-player');
 
-$playPauseButton = $('#play-pause-button');
-$muteButton = $('#mute-button');
-$fullscreenButton = $('#fullscreen-button');
+var $playPauseButton = $('#play-pause-button');
+var $muteButton = $('#mute-button');
+var $fullscreenButton = $('#fullscreen-button');
+
+var videoLengthTime = document.getElementById('total-length');
+var videoPositionTime = document.getElementById('current-position');
 
 $playPauseButton.click(function () {
 	if (video.paused) {
@@ -39,5 +42,14 @@ $fullscreenButton.click(function() {
 video.addEventListener("loadedmetadata", function () {
   vLength = video.duration.toFixed(1);
   console.log(vLength);
-  document.getElementById('vLen').innerHTML = vLength; // global variable
+  videoPositionTime.innerHTML = "0:00";
+  videoLengthTime.innerHTML = vLength;
+}, false);
+
+//  display the current and remaining times
+video.addEventListener("timeupdate", function () {
+  //  Current time  
+  var vTime = video.currentTime;
+  videoPositionTime.innerHTML = vTime.toFixed(1);
+  console.log(vTime);
 }, false);
