@@ -44,6 +44,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .media-scrubber {
+    transition: all .15s;
     opacity: .8;
     margin: 10px auto;
     width: 98%;
@@ -51,8 +52,8 @@ input[type='range']::-webkit-slider-thumb {
     position: absolute;
     left: 0;
     right: 0;
+    bottom: 5px;
     margin: 0 auto;
-    bottom: 45px;
     background: rgba(0, 0, 0, .4);
 }
 
@@ -110,4 +111,8 @@ input[type='range']::-webkit-slider-thumb {
     padding: 13px 11px;
     background: url(../icons/fullscreen-icon.png) center center no-repeat;
     margin-left: 15px;
+}
+
+.buttons-showing {
+    bottom: 45px;
 }

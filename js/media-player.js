@@ -67,10 +67,12 @@ video.addEventListener("timeupdate", function () {
 
 $mediaPlayer.mouseenter(function () {
   	console.log("User moused over media player.")
-  	$('.media-buttons').slideDown();
+  	$('.media-buttons').slideDown("fast");
+  	$('.media-scrubber').addClass("buttons-showing")
 });
 
 $mediaPlayer.mouseleave(function () {
 	console.log("User's mouse left media player.")
-  	$('.media-buttons').slideUp();
+  	$('.media-buttons').slideUp("fast");
+  	$('.media-scrubber').removeClass("buttons-showing")
 });
