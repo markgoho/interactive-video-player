@@ -40,12 +40,13 @@ video::-webkit-media-controls-enclosure {
   width: 100%;
   position: absolute;
   left: 0;
-  bottom: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 8px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  z-index: 2147483647;
-  background: rgba(0, 0, 0, 0.4); }
+  z-index: 2147483647; }
 
 input[type='range'] {
   -webkit-appearance: none !important;
@@ -61,21 +62,64 @@ input[type='range']::-webkit-slider-thumb {
   border-radius: 100%;
   cursor: pointer; }
 
-#progress-bar {
+.media-scrubber {
   opacity: .8;
   margin: 10px auto;
-  width: 100%; }
+  width: 98%;
+  height: 4px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 45px;
+  background: rgba(0, 0, 0, 0.4); }
+
+.media-buttons {
+  width: 95%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: flex;
+  bottom: 0; }
+
+.play-progress {
+  transition: all 0s;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 0;
+  background: orange;
+  height: 4px; }
+
+.load-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 0;
+  background: rgba(200, 200, 200, 0.4);
+  height: 4px; }
 
 #play-pause-button {
+  float: left;
   padding: 13px 11px;
   background: url(../icons/play-icon.png) center center no-repeat; }
 
+.media-time {
+  font-size: 2em;
+  color: white;
+  margin-left: 15px; }
+
 #mute-button {
+  float: right;
   padding: 13px 11px;
-  background: url(../icons/volume-on-icon.png) center center no-repeat; }
+  background: url(../icons/volume-on-icon.png) center center no-repeat;
+  margin-left: 15px; }
 
 #fullscreen-button {
+  float: right;
   padding: 13px 11px;
-  background: url(../icons/fullscreen-icon.png) center center no-repeat; }
+  background: url(../icons/fullscreen-icon.png) center center no-repeat;
+  margin-left: 15px; }
 
 /*# sourceMappingURL=style.css.map */

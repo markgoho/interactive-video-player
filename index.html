@@ -20,21 +20,26 @@
     				</video>
 
     				<div class="media-player-controls">
-              <progress id="progress-bar" value="0" max="100"><span>0</span>% played</progress>
-              <button id="play-pause-button"></button>
-              <button id="mute-button"></button>
-              <button id="fullscreen-button"></button>
-
+              <div class="media-scrubber">
+                <!-- <div class="background-bar"></div> -->
+                <div class="load-progress"></div>
+                <div class="play-progress"></div>
+              </div>
+              <div class="media-buttons">
+                <button id="play-pause-button"></button>
+                <div class="media-time">
+                  <span id="current-time">0</span> / <span id="media-duration"></span>
+                </div>
+                <button id="mute-button"></button>
+                <button id="fullscreen-button"></button>
+              </div>
     				</div>
     		</div>
 
     		
       </div>
 
-      <div class="transcript">
-
-
-        </div>
+      <div class="transcript"></div>
   	<script
 		  src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
 		  integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="

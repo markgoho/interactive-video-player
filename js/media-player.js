@@ -3,10 +3,10 @@ var video = document.getElementById('video-player');
 var $playPauseButton = $('#play-pause-button');
 var $muteButton = $('#mute-button');
 var $fullscreenButton = $('#fullscreen-button');
+var $playProgress = $('.play-progress');
 
-var videoLengthTime = document.getElementById('total-length');
-var videoPositionTime = document.getElementById('current-position');
-var progressBar = document.getElementById('progress-bar');
+var mediaDuration = document.getElementById('media-duration');
+var curTime = document.getElementById('current-time');
 
 $playPauseButton.click(function () {
 	if (video.paused) {
@@ -38,32 +38,31 @@ $fullscreenButton.click(function() {
 	}
 });
 
-//  display video duration when available
-// video.addEventListener("loadedmetadata", function () {
-// 	vLength = video.duration.toFixed(1);
-// 	console.log(vLength);
-// 	videoPositionTime.innerHTML = "0:00";
-// 	videoLengthTime.innerHTML = vLength;
-// }, false);
 
-// //  display the current and remaining times
-// video.addEventListener("timeupdate", function () {
-// 	//  Current time  
-// 	var vTime = video.currentTime;
-// 	videoPositionTime.innerHTML = vTime.toFixed(1);
-// 	console.log(vTime);
-// }, false);
+video.addEventListener("loadedmetadata", function () {
+	vLength = video.duration.toFixed(0);
+	mediaDuration.innerHTML = vLength;
+}, false);
 
-video.addEventListener('timeupdate', function () {
-	var percent = Math.floor((100 / video.duration) * video.currentTime);
-	progressBar.value = percent;
-});
+video.addEventListener("timeupdate", function () {
+	var vTime = video.currentTime;
+	curTime.innerHTML = vTime.toFixed(0);
+
+	var percentPlayed = (video.currentTime / video.duration) * 100;
+	$playProgress.css("width", percentPlayed + "%")
+
+}, false);
+
+// video.addEventListener('timeupdate', function () {
+// 	var percent = Math.floor((100 / video.duration) * video.currentTime);
+// 	progressBar.value = percent;
+// });
 
 function videoSeek () {
 	var seekTo = video.duration * (progressBar.value / 100);
 	video.currentTime = seekTo;
 }
 
-progressBar.addEventListener('click', videoSeek);
+//progressBar.addEventListener('click', videoSeek);
 
 
