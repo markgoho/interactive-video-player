@@ -4,6 +4,9 @@ var $playPauseButton = $('#play-pause-button');
 var $muteButton = $('#mute-button');
 var $fullscreenButton = $('#fullscreen-button');
 var $playProgress = $('.play-progress');
+var $loadProgress = $('.load-progress');
+//var $mediaButtons = $('.media-buttons');
+var $mediaPlayer = $('.wrapper');
 
 var mediaDuration = document.getElementById('media-duration');
 var curTime = document.getElementById('current-time');
@@ -51,18 +54,23 @@ video.addEventListener("timeupdate", function () {
 	var percentPlayed = (video.currentTime / video.duration) * 100;
 	$playProgress.css("width", percentPlayed + "%")
 
+	var percentLoaded = ((video.buffered.end(0) - video.buffered.start(0)) / video.duration) * 100;
+
+	if (video.buffered.end(0).toFixed(0) < video.duration.toFixed(0)) {
+		$loadProgress.css("width", percentLoaded + "%");
+	} else {
+		$loadProgress.css("width", "100%");
+	};
+	//console.log("Video buffered from " + video.buffered.start(0) + " to " + video.buffered.end(0).toFixed(0));
+
 }, false);
 
-// video.addEventListener('timeupdate', function () {
-// 	var percent = Math.floor((100 / video.duration) * video.currentTime);
-// 	progressBar.value = percent;
-// });
+$mediaPlayer.mouseenter(function () {
+  	console.log("User moused over media player.")
+  	$('.media-buttons').slideDown();
+});
 
-function videoSeek () {
-	var seekTo = video.duration * (progressBar.value / 100);
-	video.currentTime = seekTo;
-}
-
-//progressBar.addEventListener('click', videoSeek);
-
-
+$mediaPlayer.mouseleave(function () {
+	console.log("User's mouse left media player.")
+  	$('.media-buttons').slideUp();
+});
