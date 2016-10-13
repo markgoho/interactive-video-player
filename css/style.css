@@ -23,16 +23,6 @@ video {
 .media-player {
   position: relative; }
 
-.media-player-controls {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  z-index: 2147483647; }
-
 button {
   border: none;
   color: white;
@@ -45,6 +35,17 @@ button {
 
 video::-webkit-media-controls-enclosure {
   display: none !important; }
+
+.media-player-controls {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  z-index: 2147483647;
+  background: rgba(0, 0, 0, 0.4); }
 
 input[type='range'] {
   -webkit-appearance: none !important;

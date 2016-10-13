@@ -6,6 +6,7 @@ var $fullscreenButton = $('#fullscreen-button');
 
 var videoLengthTime = document.getElementById('total-length');
 var videoPositionTime = document.getElementById('current-position');
+var progressBar = document.getElementById('progress-bar');
 
 $playPauseButton.click(function () {
 	if (video.paused) {
@@ -25,31 +26,44 @@ $muteButton.click(function () {
 		video.volume = 1;
 		$muteButton.css('background', 'url(icons/volume-on-icon.png) center center no-repeat')
 	}
-
 });
 
 $fullscreenButton.click(function() {
-  if (video.requestFullscreen) {
-    video.requestFullscreen();
-  } else if (video.webkitRequestFullscreen) {
-    video.webkitRequestFullscreen();
-  } else if (video.mozRequestFullScreen) {
-    video.mozRequestFullScreen();
-  }
+	if (video.requestFullscreen) {
+	video.requestFullscreen();
+	} else if (video.webkitRequestFullscreen) {
+	video.webkitRequestFullscreen();
+	} else if (video.mozRequestFullScreen) {
+	video.mozRequestFullScreen();
+	}
 });
 
 //  display video duration when available
-video.addEventListener("loadedmetadata", function () {
-  vLength = video.duration.toFixed(1);
-  console.log(vLength);
-  videoPositionTime.innerHTML = "0:00";
-  videoLengthTime.innerHTML = vLength;
-}, false);
+// video.addEventListener("loadedmetadata", function () {
+// 	vLength = video.duration.toFixed(1);
+// 	console.log(vLength);
+// 	videoPositionTime.innerHTML = "0:00";
+// 	videoLengthTime.innerHTML = vLength;
+// }, false);
 
-//  display the current and remaining times
-video.addEventListener("timeupdate", function () {
-  //  Current time  
-  var vTime = video.currentTime;
-  videoPositionTime.innerHTML = vTime.toFixed(1);
-  console.log(vTime);
-}, false);
+// //  display the current and remaining times
+// video.addEventListener("timeupdate", function () {
+// 	//  Current time  
+// 	var vTime = video.currentTime;
+// 	videoPositionTime.innerHTML = vTime.toFixed(1);
+// 	console.log(vTime);
+// }, false);
+
+video.addEventListener('timeupdate', function () {
+	var percent = Math.floor((100 / video.duration) * video.currentTime);
+	progressBar.value = percent;
+});
+
+function videoSeek () {
+	var seekTo = video.duration * (progressBar.value / 100);
+	video.currentTime = seekTo;
+}
+
+progressBar.addEventListener('click', videoSeek);
+
+
