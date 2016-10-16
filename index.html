@@ -13,7 +13,7 @@
   	<body>
       <div class="wrapper">
     		<div class="media-player">
-    				<video id="video-player">
+    				<video id="video-player" preload="metadata">
     					<source src="video/video.mp4" type="video/mp4">
     					<source src="video/video.ogg" type="vido/ogg">
     					<track kind="subtitles" src="captions.vtt">
@@ -28,7 +28,7 @@
               <div class="media-buttons">
                 <button id="play-pause-button"></button>
                 <div class="media-time">
-                  <span id="current-time">0</span> / <span id="media-duration">0</span>
+                  <span id="current-time">0:00</span> / <span id="media-duration">0:00</span>
                 </div>
                 <button id="mute-button"></button>
                 <button id="fullscreen-button"></button>
@@ -38,6 +38,8 @@
 
     		
       </div>
+
+      <div id="log"></div>
 
       <div class="transcript"></div>
   	<script

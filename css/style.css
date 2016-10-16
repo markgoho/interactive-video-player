@@ -48,20 +48,6 @@ video::-webkit-media-controls-enclosure {
   justify-content: space-between;
   z-index: 2147483647; }
 
-input[type='range'] {
-  -webkit-appearance: none !important;
-  background: #000;
-  border: #666 1px solid;
-  height: 4px; }
-
-input[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background: #e6e6e6;
-  height: 15px;
-  width: 15px;
-  border-radius: 100%;
-  cursor: pointer; }
-
 .media-scrubber {
   transition: all .15s;
   opacity: .8;
@@ -73,7 +59,8 @@ input[type='range']::-webkit-slider-thumb {
   right: 0;
   bottom: 5px;
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.4); }
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer; }
 
 .media-buttons {
   width: 95%;

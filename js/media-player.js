@@ -5,15 +5,11 @@ var $muteButton = $('#mute-button');
 var $fullscreenButton = $('#fullscreen-button');
 var $playProgress = $('.play-progress');
 var $loadProgress = $('.load-progress');
-//var $mediaButtons = $('.media-buttons');
 var $mediaPlayer = $('.wrapper');
 var $scrubber = $('.media-scrubber');
 
-var mediaDuration = document.getElementById('media-duration');
-var curTime = document.getElementById('current-time');
-
-var vLength = video.duration.toFixed(0);
-mediaDuration.innerHTML = vLength;
+var $mediaDuration = $('#media-duration');
+var $curTime = $('#current-time');
 
 $playPauseButton.click(function () {
 	if (video.paused) {
@@ -28,13 +24,14 @@ $playPauseButton.click(function () {
 $muteButton.click(function () {
 	if (video.volume === 1) {
 		video.volume = 0;
-		$muteButton.css('background', 'url(icons/volume-off-icon.png) center center no-repeat')
+		$muteButton.css('background', 'url(icons/volume-off-icon.png) center center no-repeat');
 	} else {
 		video.volume = 1;
-		$muteButton.css('background', 'url(icons/volume-on-icon.png) center center no-repeat')
+		$muteButton.css('background', 'url(icons/volume-on-icon.png) center center no-repeat');
 	}
 });
 
+// Full Screen Button
 $fullscreenButton.click(function() {
 	if (video.requestFullscreen) {
 	video.requestFullscreen();
@@ -45,13 +42,13 @@ $fullscreenButton.click(function() {
 	}
 });
 
+// Render Progress and Loading Bars
+video.addEventListener("timeupdate", updateScrubber);
+video.addEventListener("timeupdate", updateTime);
 
-video.addEventListener("timeupdate", function () {
-	var vTime = video.currentTime;
-	curTime.innerHTML = vTime.toFixed(0);
-
+function updateScrubber () {
 	var percentPlayed = (video.currentTime / video.duration) * 100;
-	$playProgress.css("width", percentPlayed + "%")
+	$playProgress.css("width", percentPlayed + "%");
 
 	var percentLoaded = ((video.buffered.end(0) - video.buffered.start(0)) / video.duration) * 100;
 
@@ -59,28 +56,45 @@ video.addEventListener("timeupdate", function () {
 		$loadProgress.css("width", percentLoaded + "%");
 	} else {
 		$loadProgress.css("width", "100%");
-	};
-	//console.log("Video buffered from " + video.buffered.start(0) + " to " + video.buffered.end(0).toFixed(0));
+	}
+}
 
-}, false);
+function updateTime () {
+
+	var currentMin = Math.floor(video.currentTime / 60);
+	var currentSec = Math.floor(video.currentTime - currentMin * 60);
+	var totalMin = Math.floor(video.duration / 60);
+	var totalSec = Math.floor(video.duration - totalMin * 60);
+
+	if (currentSec < 10) {
+    	currentSec = "0" + currentSec;
+	}
+	
+	if (totalSec < 10) {
+		totalSec = "0" + totalSec;
+	}
+
+	$curTime.text(currentMin + ":" + currentSec);
+	$mediaDuration.text(totalMin + ":" + totalSec);
+}
 
 $mediaPlayer.mouseenter(function () {
   	$('.media-buttons').slideDown("fast");
-  	$('.media-scrubber').addClass("buttons-showing")
+  	$('.media-scrubber').addClass("buttons-showing");
 });
 
 $mediaPlayer.mouseleave(function () {
   	$('.media-buttons').slideUp("fast");
-  	$('.media-scrubber').removeClass("buttons-showing")
+  	$('.media-scrubber').removeClass("buttons-showing");
 });
 
 $scrubber.mousedown(function (event) {
 	//get X position of mouse over loading bar (event.pageX)
-	var position = event.pageX;
+	var x = event.pageX - $(this).offset().left;
 
-	//convert the X position to a time code in the video
-	var clickedPosition = "";
+	//convert the X position to a percentage of the video
+	var percent = x / $(this).width();
 
-	//set video's current time to clickedPosition
-	video.currentTime = clickedPosition;
+	//set video's current time to percent of total duration
+	video.currentTime = percent * video.duration;
 });
