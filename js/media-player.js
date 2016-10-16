@@ -7,9 +7,13 @@ var $playProgress = $('.play-progress');
 var $loadProgress = $('.load-progress');
 //var $mediaButtons = $('.media-buttons');
 var $mediaPlayer = $('.wrapper');
+var $scrubber = $('.media-scrubber');
 
 var mediaDuration = document.getElementById('media-duration');
 var curTime = document.getElementById('current-time');
+
+var vLength = video.duration.toFixed(0);
+mediaDuration.innerHTML = vLength;
 
 $playPauseButton.click(function () {
 	if (video.paused) {
@@ -42,11 +46,6 @@ $fullscreenButton.click(function() {
 });
 
 
-video.addEventListener("loadedmetadata", function () {
-	vLength = video.duration.toFixed(0);
-	mediaDuration.innerHTML = vLength;
-}, false);
-
 video.addEventListener("timeupdate", function () {
 	var vTime = video.currentTime;
 	curTime.innerHTML = vTime.toFixed(0);
@@ -66,13 +65,22 @@ video.addEventListener("timeupdate", function () {
 }, false);
 
 $mediaPlayer.mouseenter(function () {
-  	console.log("User moused over media player.")
   	$('.media-buttons').slideDown("fast");
   	$('.media-scrubber').addClass("buttons-showing")
 });
 
 $mediaPlayer.mouseleave(function () {
-	console.log("User's mouse left media player.")
   	$('.media-buttons').slideUp("fast");
   	$('.media-scrubber').removeClass("buttons-showing")
+});
+
+$scrubber.mousedown(function (event) {
+	//get X position of mouse over loading bar (event.pageX)
+	var position = event.pageX;
+
+	//convert the X position to a time code in the video
+	var clickedPosition = "";
+
+	//set video's current time to clickedPosition
+	video.currentTime = clickedPosition;
 });
