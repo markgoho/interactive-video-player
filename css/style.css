@@ -43,8 +43,6 @@ video::-webkit-media-controls-enclosure {
   right: 0;
   margin: 0 auto;
   bottom: 8px;
-  display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   z-index: 2147483647; }
 
@@ -69,6 +67,7 @@ video::-webkit-media-controls-enclosure {
   right: 0;
   margin: 0 auto;
   display: flex;
+  justify-content: space-between;
   bottom: 0; }
 
 .play-progress {
@@ -94,9 +93,9 @@ video::-webkit-media-controls-enclosure {
   background: url(../icons/play-icon.png) center center no-repeat; }
 
 .media-time {
-  font-size: 2em;
+  font-size: 1em;
   color: white;
-  margin-left: 15px; }
+  margin: auto 0 auto 20px; }
 
 #mute-button {
   float: right;
@@ -112,5 +111,8 @@ video::-webkit-media-controls-enclosure {
 
 .buttons-showing {
   bottom: 45px; }
+
+#play-time {
+  display: flex; }
 
 /*# sourceMappingURL=style.css.map */

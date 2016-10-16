@@ -21,8 +21,8 @@ video::-webkit-media-controls-enclosure {
     right: 0;
     margin: 0 auto;
     bottom: 8px;
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
     justify-content: space-between;
     z-index: 2147483647;
 }
@@ -50,6 +50,7 @@ video::-webkit-media-controls-enclosure {
     right: 0;
     margin: 0 auto;
     display: flex;
+    justify-content: space-between;
     bottom: 0;
 }
 
@@ -79,9 +80,9 @@ video::-webkit-media-controls-enclosure {
 }
 
 .media-time {
-    font-size: 2em;
+    font-size: 1em;
     color: white;
-    margin-left: 15px;
+    margin: auto 0 auto 20px;
 }
 
 #mute-button {
@@ -100,4 +101,8 @@ video::-webkit-media-controls-enclosure {
 
 .buttons-showing {
     bottom: 45px;
+}
+
+#play-time {
+    display: flex;
 }

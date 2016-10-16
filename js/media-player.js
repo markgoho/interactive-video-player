@@ -45,6 +45,7 @@ $fullscreenButton.click(function() {
 // Render Progress and Loading Bars
 video.addEventListener("timeupdate", updateScrubber);
 video.addEventListener("timeupdate", updateTime);
+video.addEventListener("canplay", updateTime);
 
 function updateScrubber () {
 	var percentPlayed = (video.currentTime / video.duration) * 100;
