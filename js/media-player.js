@@ -5,12 +5,14 @@ var $muteButton = $('#mute-button');
 var $fullscreenButton = $('#fullscreen-button');
 var $playProgress = $('.play-progress');
 var $loadProgress = $('.load-progress');
-var $mediaPlayer = $('.wrapper');
+var $mediaPlayer = $('.media-player');
 var $scrubber = $('.media-scrubber');
 var $mediaDuration = $('#media-duration');
 var $curTime = $('#current-time');
 var $transcript = $('#transcript span');
 var $captions = $('#closed-captions');
+var $volumeBar = $('#volume-bar');
+var $currentVol = $('#current-volume')
 
 $playPauseButton.click(function () {
 	if (video.paused) {
@@ -23,12 +25,14 @@ $playPauseButton.click(function () {
 });
 
 $muteButton.click(function () {
-	if (video.volume === 1) {
+	if (video.volume > 0) {
 		video.volume = 0;
 		$muteButton.css('background', 'url(icons/volume-off-icon.png) center center no-repeat');
+		$currentVol.width(0);
 	} else {
 		video.volume = 1;
 		$muteButton.css('background', 'url(icons/volume-on-icon.png) center center no-repeat');
+		$currentVol.width("100%");
 	}
 });
 
@@ -102,6 +106,20 @@ $scrubber.mousedown(function (event) {
 	video.currentTime = percent * video.duration;
 });
 
+$volumeBar.mousedown(function (event) {
+	//get X position of mouse over volume bar (event.pageX)
+	var x = event.pageX - $(this).offset().left;
+
+	//convert the X position to a percentage of the volume
+	var percent = x / $(this).width();
+
+	//set video's volume time to percent of total duration
+	video.volume = percent;
+
+	//set volume bar to appropriate width
+	var newWidth = $volumeBar.width() * percent;
+	$currentVol.width(newWidth + "px");
+});
 
 function timeToString(time) {
     var result;
