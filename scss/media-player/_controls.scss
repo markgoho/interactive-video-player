@@ -99,6 +99,15 @@ video::-webkit-media-controls-enclosure {
     margin-left: 15px;
 }
 
+#closed-captions {
+    height: 26px;
+    padding: 0;
+}
+
+#closed-captions img {
+    height: 100%;
+}
+
 .buttons-showing {
     bottom: 45px;
 }

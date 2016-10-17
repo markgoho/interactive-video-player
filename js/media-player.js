@@ -7,9 +7,10 @@ var $playProgress = $('.play-progress');
 var $loadProgress = $('.load-progress');
 var $mediaPlayer = $('.wrapper');
 var $scrubber = $('.media-scrubber');
-
 var $mediaDuration = $('#media-duration');
 var $curTime = $('#current-time');
+var $transcript = $('#transcript span');
+var $captions = $('#closed-captions');
 
 $playPauseButton.click(function () {
 	if (video.paused) {
@@ -46,6 +47,7 @@ $fullscreenButton.click(function() {
 video.addEventListener("timeupdate", updateScrubber);
 video.addEventListener("timeupdate", updateTime);
 video.addEventListener("canplay", updateTime);
+video.addEventListener("timeupdate", updateTranscript);
 
 function updateScrubber () {
 	var percentPlayed = (video.currentTime / video.duration) * 100;
@@ -98,4 +100,44 @@ $scrubber.mousedown(function (event) {
 
 	//set video's current time to percent of total duration
 	video.currentTime = percent * video.duration;
+});
+
+
+function timeToString(time) {
+    var result;
+    var hours = parseInt(time.substr(0, 2));
+    var minutes = parseInt(time.substr(3, 2));
+    var seconds = parseInt(time.substr(6, 2));
+    var milliseconds = parseInt(time.substr(9, 3));
+    result = (hours * 3600) + (minutes * 60) + seconds + (milliseconds * 0.001);
+    return result;
+}
+
+function updateTranscript () {
+	var curTime = video.currentTime;
+	
+	$transcript.each(function (index) {
+		var startTime = timeToString($(this).attr("data-time-start"));
+		var endTime = timeToString($(this).attr("data-time-end"));
+		if (curTime >= startTime && curTime < endTime) {
+			$(this).addClass("highlight");	
+		} else {
+			$(this).removeClass("highlight");
+		}
+	});
+}
+
+//User clicks on any of the spans, the span highlights and the video goes to that timecode
+$transcript.click(function () {
+	video.currentTime = timeToString($(this).attr("data-time-start"));
+});
+
+//turn on and off captions
+$captions.click(function () {
+	var textTrack = video.textTracks[0];
+	if (textTrack.mode === "showing") {
+		textTrack.mode = "hidden";
+	} else {
+		textTrack.mode = "showing";
+	}
 });

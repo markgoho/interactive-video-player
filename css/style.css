@@ -20,6 +20,17 @@ video {
   max-width: 900px;
   padding: 15px 0; }
 
+#transcript {
+  line-height: 1.5;
+  font-size: 1.25em; }
+
+#transcript span:hover {
+  color: #999;
+  cursor: pointer; }
+
+.highlight {
+  color: white; }
+
 .media-player {
   position: relative; }
 
@@ -108,6 +119,13 @@ video::-webkit-media-controls-enclosure {
   padding: 13px 11px;
   background: url(../icons/fullscreen-icon.png) center center no-repeat;
   margin-left: 15px; }
+
+#closed-captions {
+  height: 26px;
+  padding: 0; }
+
+#closed-captions img {
+  height: 100%; }
 
 .buttons-showing {
   bottom: 45px; }
