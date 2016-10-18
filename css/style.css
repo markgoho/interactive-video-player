@@ -5,10 +5,14 @@ html {
   box-sizing: inherit; }
 
 body {
+  height: 100vh;
   padding: 0;
   margin: 0;
   font-family: 'Open Sans', arial, sans-serif;
-  background: #302929; }
+  background: #302929;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; }
 
 video {
   width: 100%;
@@ -18,14 +22,19 @@ video {
 .wrapper {
   margin: 15px auto;
   max-width: 900px;
-  padding: 15px 0; }
+  padding: 15px 25px; }
 
 #transcript {
   line-height: 1.5;
-  font-size: 1.25em; }
+  font-size: 1.45em;
+  color: darkorange; }
+  @media (max-width: 1798px) {
+    #transcript {
+      margin-top: 0;
+      padding-top: 0; } }
 
 #transcript span:hover {
-  color: #999;
+  color: yellow;
   cursor: pointer; }
 
 .highlight {
@@ -41,11 +50,7 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 5px 5px;
   cursor: pointer; }
-
-video::-webkit-media-controls-enclosure {
-  display: none !important; }
 
 .media-player-controls {
   width: 100%;
@@ -107,6 +112,9 @@ video::-webkit-media-controls-enclosure {
   font-size: 1em;
   color: white;
   margin: auto 0 auto 20px; }
+  @media (max-width: 350px) {
+    .media-time {
+      display: none; } }
 
 #mute-button {
   float: right;
@@ -127,6 +135,49 @@ video::-webkit-media-controls-enclosure {
 #closed-captions img {
   height: 100%; }
 
+#mute-full {
+  display: flex;
+  justify-content: space-between; }
+
+#mute-full > button {
+  margin-left: 15px; }
+
+.speed-button {
+  padding: 0;
+  background: none;
+  height: 26px;
+  position: relative; }
+
+.speed-controls {
+  display: none;
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  top: -70px;
+  left: -30px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.5); }
+
+.speed-controls button {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  height: 20px;
+  top: 10px;
+  background: none; }
+
+.speed-increase {
+  left: 15px; }
+
+.speed-decrease {
+  left: 45px; }
+
+.speed-button img {
+  height: 100%; }
+
+.speed-button:hover {
+  cursor: pointer; }
+
 .buttons-showing {
   bottom: 45px; }
 
@@ -135,11 +186,14 @@ video::-webkit-media-controls-enclosure {
 
 #volume-bar {
   position: relative;
-  width: 200px;
+  width: 100px;
   height: 4px;
   margin: auto 0 auto 5px;
   background: rgba(255, 255, 255, 0.4);
   cursor: pointer; }
+  @media (max-width: 496px) {
+    #volume-bar {
+      display: none; } }
 
 #current-volume {
   position: absolute;

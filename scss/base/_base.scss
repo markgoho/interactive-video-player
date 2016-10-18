@@ -6,10 +6,14 @@ html {
 }
 
 body {
+	height: 100vh;
 	padding: 0;
 	margin: 0;
 	font-family: 'Open Sans', arial, sans-serif;
 	background: #302929;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
 }
 
 video {

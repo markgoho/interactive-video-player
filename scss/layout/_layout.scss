@@ -2,17 +2,22 @@
 	margin: 15px auto;
 	max-width: 900px;
 	//background: #504848;
-	padding: 15px 0;
+	padding: 15px 25px;
 	//border-radius: 15px;
 }
 
 #transcript {
 	line-height: 1.5;
-	font-size: 1.25em;
+	font-size: 1.45em;
+	color: darkorange;
+	@media (max-width: 1798px) {
+		margin-top: 0;
+		padding-top: 0;
+	}
 }
 
 #transcript span:hover {
-	color: #999;
+	color: yellow;
 	cursor: pointer;
 }
 

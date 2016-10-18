@@ -1,4 +1,4 @@
-var video = document.getElementById('video-player');
+var video = document.getElementById('video-player'); //apparently you can't select the video element as a jQuery object
 
 var $playPauseButton = $('#play-pause-button');
 var $muteButton = $('#mute-button');
@@ -12,8 +12,13 @@ var $curTime = $('#current-time');
 var $transcript = $('#transcript span');
 var $captions = $('#closed-captions');
 var $volumeBar = $('#volume-bar');
-var $currentVol = $('#current-volume')
+var $currentVol = $('#current-volume');
+var $speedButton = $('.speed-button');
+var $speedControls = $('.speed-controls');
+var $speedIncrease = $('.speed-increase');
+var $speedDecrease = $('.speed-decrease');
 
+// Play button plays the video or pauses it if it's already playing
 $playPauseButton.click(function () {
 	if (video.paused) {
 		video.play();
@@ -24,6 +29,7 @@ $playPauseButton.click(function () {
 	}
 });
 
+// Mute button changes volume to zero and adjusts volume bar to 0 width
 $muteButton.click(function () {
 	if (video.volume > 0) {
 		video.volume = 0;
@@ -36,7 +42,7 @@ $muteButton.click(function () {
 	}
 });
 
-// Full Screen Button
+// Full Screen Button - subject to browser idiosyncrasies 
 $fullscreenButton.click(function() {
 	if (video.requestFullscreen) {
 	video.requestFullscreen();
@@ -48,17 +54,10 @@ $fullscreenButton.click(function() {
 });
 
 // Render Progress and Loading Bars
-video.addEventListener("timeupdate", updateScrubber);
-video.addEventListener("timeupdate", updateTime);
-video.addEventListener("canplay", updateTime);
-video.addEventListener("timeupdate", updateTranscript);
-
 function updateScrubber () {
 	var percentPlayed = (video.currentTime / video.duration) * 100;
 	$playProgress.css("width", percentPlayed + "%");
-
 	var percentLoaded = ((video.buffered.end(0) - video.buffered.start(0)) / video.duration) * 100;
-
 	if (video.buffered.end(0).toFixed(0) < video.duration.toFixed(0)) {
 		$loadProgress.css("width", percentLoaded + "%");
 	} else {
@@ -66,25 +65,23 @@ function updateScrubber () {
 	}
 }
 
+// Fundtion that renders the current and total video time in the controls box
 function updateTime () {
-
 	var currentMin = Math.floor(video.currentTime / 60);
 	var currentSec = Math.floor(video.currentTime - currentMin * 60);
 	var totalMin = Math.floor(video.duration / 60);
 	var totalSec = Math.floor(video.duration - totalMin * 60);
-
 	if (currentSec < 10) {
     	currentSec = "0" + currentSec;
 	}
-	
 	if (totalSec < 10) {
 		totalSec = "0" + totalSec;
 	}
-
 	$curTime.text(currentMin + ":" + currentSec);
 	$mediaDuration.text(totalMin + ":" + totalSec);
 }
 
+//Show and hide the media controls based on cursor being inside the media player
 $mediaPlayer.mouseenter(function () {
   	$('.media-buttons').slideDown("fast");
   	$('.media-scrubber').addClass("buttons-showing");
@@ -93,8 +90,10 @@ $mediaPlayer.mouseenter(function () {
 $mediaPlayer.mouseleave(function () {
   	$('.media-buttons').slideUp("fast");
   	$('.media-scrubber').removeClass("buttons-showing");
+  	$speedControls.hide();
 });
 
+// Change position in video based on where user clicks in progress bar
 $scrubber.mousedown(function (event) {
 	//get X position of mouse over loading bar (event.pageX)
 	var x = event.pageX - $(this).offset().left;
@@ -106,6 +105,7 @@ $scrubber.mousedown(function (event) {
 	video.currentTime = percent * video.duration;
 });
 
+// Change volume based on where user clicks in volume bar
 $volumeBar.mousedown(function (event) {
 	//get X position of mouse over volume bar (event.pageX)
 	var x = event.pageX - $(this).offset().left;
@@ -121,6 +121,7 @@ $volumeBar.mousedown(function (event) {
 	$currentVol.width(newWidth + "px");
 });
 
+// Function to convert data in transcript spans to seconds
 function timeToString(time) {
     var result;
     var hours = parseInt(time.substr(0, 2));
@@ -131,16 +132,17 @@ function timeToString(time) {
     return result;
 }
 
+// Function to highlight the span that aligns with the current spot in the video
 function updateTranscript () {
 	var curTime = video.currentTime;
 	
 	$transcript.each(function (index) {
-		var startTime = timeToString($(this).attr("data-time-start"));
-		var endTime = timeToString($(this).attr("data-time-end"));
-		if (curTime >= startTime && curTime < endTime) {
-			$(this).addClass("highlight");	
+		var startTime = timeToString($(this).attr("data-time-start")); //convert start time to seconds
+		var endTime = timeToString($(this).attr("data-time-end")); //convert end time to seconds
+		if (curTime >= startTime && curTime < endTime) { //if the current time is between the start and end time
+			$(this).addClass("highlight");	 // highlight it
 		} else {
-			$(this).removeClass("highlight");
+			$(this).removeClass("highlight"); // otherwise remove the highlight
 		}
 	});
 }
@@ -159,3 +161,22 @@ $captions.click(function () {
 		textTrack.mode = "showing";
 	}
 });
+
+$speedButton.click(function () {
+	$speedControls.show();
+});
+
+$speedIncrease.click(function () {
+	video.playbackRate += 0.25;
+	console.log(video.playbackRate);
+});
+
+$speedDecrease.click(function () {
+	video.playbackRate -= 0.25;
+	console.log(video.playbackRate);
+});
+
+video.addEventListener("timeupdate", updateScrubber); //as the time updates, move the progress bar
+video.addEventListener("timeupdate", updateTime); //as the time updates, change the time displayed in the controls
+video.addEventListener("canplay", updateTime); //if the video can be played, update the control bar time (used once to get the video duration)
+video.addEventListener("timeupdate", updateTranscript); //as the time updates, highlight the appropriate transcript span

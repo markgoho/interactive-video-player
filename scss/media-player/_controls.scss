@@ -5,13 +5,13 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 5px 5px;
+    //margin: 5px 5px;
     cursor: pointer;
 }
 
-video::-webkit-media-controls-enclosure {
-  display:none !important;
-}
+// video::-webkit-media-controls-enclosure {
+//   display:none !important;
+// }
 
 .media-player-controls {
     //max-width: 100%;
@@ -83,6 +83,10 @@ video::-webkit-media-controls-enclosure {
     font-size: 1em;
     color: white;
     margin: auto 0 auto 20px;
+
+    @media (max-width: 350px) {
+        display: none;
+    }
 }
 
 #mute-button {
@@ -108,6 +112,58 @@ video::-webkit-media-controls-enclosure {
     height: 100%;
 }
 
+#mute-full {
+    display: flex;
+    justify-content: space-between;
+}
+
+#mute-full > button {
+    margin-left: 15px;
+}
+
+.speed-button {
+    padding: 0;
+    background: none;
+    height: 26px;
+    position: relative;
+}
+
+.speed-controls {
+    display: none;
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    top: -70px;
+    left: -30px;
+    border-radius: 15px;
+    background: rgba(255,255,255,.5);
+}
+
+.speed-controls button {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    height: 20px;
+    top: 10px;
+    background: none;
+}
+
+.speed-increase {
+    left: 15px;
+}
+
+.speed-decrease {
+    left: 45px;
+}
+
+.speed-button img {
+    height: 100%;
+}
+
+.speed-button:hover {
+    cursor: pointer;
+}
+
 .buttons-showing {
     bottom: 45px;
 }
@@ -118,11 +174,15 @@ video::-webkit-media-controls-enclosure {
 
 #volume-bar {
     position: relative;
-    width: 200px;
+    width: 100px;
     height: 4px;
     margin: auto 0 auto 5px;
     background: rgba(255, 255, 255, .4);
     cursor: pointer;
+
+    @media (max-width: 496px) {
+        display: none;
+    }
 }
 
 #current-volume {
@@ -133,3 +193,5 @@ video::-webkit-media-controls-enclosure {
     height: 100%;
     background: white;
 }
+
+
