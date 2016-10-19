@@ -9,7 +9,7 @@ var $mediaPlayer = $('.media-player');
 var $scrubber = $('.media-scrubber');
 var $mediaDuration = $('#media-duration');
 var $curTime = $('#current-time');
-var $transcript = $('#transcript span');
+var $transcript = $('#transcript p');
 var $captions = $('#closed-captions');
 var $volumeBar = $('#volume-bar');
 var $currentVol = $('#current-volume');
@@ -121,7 +121,7 @@ $volumeBar.mousedown(function (event) {
 	$currentVol.width(newWidth + "px");
 });
 
-// Function to convert data in transcript spans to seconds
+// Function to convert data in transcript paragraphs to seconds
 function timeToString(time) {
     var result;
     var hours = parseInt(time.substr(0, 2));
@@ -132,7 +132,7 @@ function timeToString(time) {
     return result;
 }
 
-// Function to highlight the span that aligns with the current spot in the video
+// Function to highlight the paragraph that aligns with the current spot in the video
 function updateTranscript () {
 	var curTime = video.currentTime;
 	
@@ -147,7 +147,7 @@ function updateTranscript () {
 	});
 }
 
-//User clicks on any of the spans, the span highlights and the video goes to that timecode
+//User clicks on any of the paragraphs, the paragraph highlights and the video goes to that timecode
 $transcript.click(function () {
 	video.currentTime = timeToString($(this).attr("data-time-start"));
 });
@@ -179,4 +179,4 @@ $speedDecrease.click(function () {
 video.addEventListener("timeupdate", updateScrubber); //as the time updates, move the progress bar
 video.addEventListener("timeupdate", updateTime); //as the time updates, change the time displayed in the controls
 video.addEventListener("canplay", updateTime); //if the video can be played, update the control bar time (used once to get the video duration)
-video.addEventListener("timeupdate", updateTranscript); //as the time updates, highlight the appropriate transcript span
+video.addEventListener("timeupdate", updateTranscript); //as the time updates, highlight the appropriate transcript paragraph

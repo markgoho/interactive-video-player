@@ -16,7 +16,11 @@
 	}
 }
 
-#transcript span:hover {
+#transcript p {
+	display: inline;
+}
+
+#transcript p:hover {
 	color: yellow;
 	cursor: pointer;
 }
